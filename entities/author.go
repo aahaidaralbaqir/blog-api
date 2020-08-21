@@ -1,12 +1,7 @@
 package entities
 
-import (
-	"github.com/jinzhu/gorm"
-)
 
 type Author struct {
-	*gorm.Model
-	Id int `json:"id"`
-	Name string `json:"name"`
-	Age string `json:"age"`
+	ID int `json:"id" gorm:"primary_key; AUTO_INCREMENT"`
+	Name string `json:"name" gorm:"type:varchar(100)"`
 }

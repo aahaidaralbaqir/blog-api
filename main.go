@@ -10,5 +10,7 @@ const (
 
 func main() {
 	application := new(cmd.Application)
+	application.ConfigureDatabase()
+	application.ConfigureMigration()
 	application.Start(PORT)
 }

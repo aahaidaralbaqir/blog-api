@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"github.com/jinzhu/gorm"
+	"go-crash-course/database"
 	"go-crash-course/entities"
 )
 
@@ -19,9 +20,11 @@ func (p *PostRepository) Save(post *entities.Post) (*entities.Post, error) {
 }
 
 func (p *PostRepository) FindAll() ([]*entities.Post, error) {
-	return nil, nil
+	var Post []*entities.Post
+	p.Conn.Raw("SELECT * FROM posts").Scan(&Post)
+	return Post, nil
 }
 
-func NewPostRepository(conn *gorm.DB) IPostRepository {
-	return &PostRepository{Conn: conn}
+func NewPostRepository() IPostRepository {
+	return &PostRepository{Conn: database.GetConnection()}
 }

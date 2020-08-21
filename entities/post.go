@@ -1,13 +1,8 @@
 package entities
 
-import (
-	"github.com/jinzhu/gorm"
-)
-
 type Post struct {
-	*gorm.Model
-	Id          int `json:"id"`
-	Title       int `json:"title"`
-	Description int `json:"description"`
-	Author      int `json:"author"`
+	ID          int `json:"id" gorm:"primary_key; AUTO_INCREMENT"`
+	Title       int `json:"title" gorm:"type:varchar(100)"`
+	Description int `json:"description" gorm:"type:text"`
+	AuthorId    int `json:"author_id" gorm:"type:integer`
 }

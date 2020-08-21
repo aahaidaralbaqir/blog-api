@@ -3,39 +3,43 @@ package database
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	"github.com/spf13/viper"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"go-crash-course/entities"
 )
 
-var (
-	DBConn *gorm.DB
-)
+var conn *gorm.DB
+var err error
 
-type Database struct{
-	Dsn string
-}
+func Connection() {
+	databaseURI := fmt.Sprintf("%s:%s@(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		viper.GetString("database.user"),
+		viper.GetString("database.password"),
+		viper.GetString("database.host"),
+		viper.GetString("database.port"),
+		viper.GetString("database.dbname"),
+	)
 
-func (d *Database) SetDSN(dsn string) {
-	d.Dsn = dsn
-}
-
-func (d *Database) Setup() *gorm.DB {
-	var err error
-	DBConn, err = gorm.Open("mysql", d.Dsn)
-
+	conn, err = gorm.Open("mysql",databaseURI)
+	fmt.Println(databaseURI)
 	if err != nil {
-		panic("Database -> error")
+		fmt.Println("DATABASE => `Error When Connecting to database`",err.Error())
 	}
-	fmt.Println("Database connection successfull opened")
-	return DBConn
+	fmt.Println("DATABASE => `Success connecting to database`")
 }
 
-
-func (d *Database) GetInstance() *gorm.DB {
-	if DBConn == nil {
-		if d.Dsn == "" {
-			panic("please configure the dsn")
-		}
-		d.Setup()
+func CreateConnection() {
+	if err != nil {
+		panic("CREATE CONNECTION => Error While Create Connection")
 	}
-	return DBConn
+	Connection()
+}
+
+func GetConnection() *gorm.DB {
+	return conn
+}
+
+func CreateMigration() {
+	conn.AutoMigrate(&entities.Post{},&entities.Author{})
+	fmt.Println("MIGRATION => `migration successfully`")
 }
