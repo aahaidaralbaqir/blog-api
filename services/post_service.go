@@ -10,18 +10,18 @@ type PostService struct {
 }
 
 func (u *PostService) GetPost() []*entities.Post {
-	posts,_ := u.Repository.FindAll()
+	posts, _ := u.Repository.FindAll()
 	return posts
 }
 
 func (u *PostService) GetPostWithAuthor() []*entities.PostAuthor {
-	postsWihAuthor,_ := u.Repository.WithAuthor()
+	postsWihAuthor, _ := u.Repository.WithAuthor()
 	return postsWihAuthor
 }
 
-func (u *PostService) SavePost(data *entities.Post) (post *entities.Post,err error) {
+func (u *PostService) SavePost(data *entities.Post) (post *entities.Post, err error) {
 	result, err := u.Repository.Save(data)
-	return result,nil
+	return result, nil
 }
 
 func NewPostService() PostService {
