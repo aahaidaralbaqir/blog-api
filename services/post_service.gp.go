@@ -14,6 +14,16 @@ func (u *PostService) GetPost() []*entities.Post {
 	return posts
 }
 
+func (u *PostService) GetPostWithAuthor() []*entities.PostAuthor {
+	postsWihAuthor,_ := u.Repository.WithAuthor()
+	return postsWihAuthor
+}
+
+func (u *PostService) SavePost(data *entities.Post) (post *entities.Post,err error) {
+	result, err := u.Repository.Save(data)
+	return result,nil
+}
+
 func NewPostService() PostService {
 	return PostService{
 		Repository: repositories.NewPostRepository(),

@@ -5,12 +5,11 @@ import (
 )
 
 const (
-	PORT int = 8000
+	PORT int q= 8000
 )
 
 func main() {
 	application := new(cmd.Application)
 	application.ConfigureDatabase()
-	application.ConfigureMigration()
 	application.Start(PORT)
 }

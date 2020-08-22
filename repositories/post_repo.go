@@ -9,6 +9,7 @@ import (
 type IPostRepository interface {
 	Save(*entities.Post) (*entities.Post, error)
 	FindAll() ([]*entities.Post, error)
+	WithAuthor() ([]*entities.PostAuthor,error)
 }
 
 type PostRepository struct {
@@ -16,7 +17,14 @@ type PostRepository struct {
 }
 
 func (p *PostRepository) Save(post *entities.Post) (*entities.Post, error) {
-	return nil, nil
+	p.Conn.Table("posts").Create(&post)
+	return post, nil
+}
+
+func (p *PostRepository) WithAuthor() ([]*entities.PostAuthor, error) {
+	var PostAuthor []*entities.PostAuthor
+	p.Conn.Raw("SELECT * FROM posts INNER JOIN authors ON posts.author_id = authors.id").Scan(&PostAuthor)
+	return PostAuthor, nil
 }
 
 func (p *PostRepository) FindAll() ([]*entities.Post, error) {
