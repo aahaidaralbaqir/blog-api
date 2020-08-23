@@ -5,7 +5,7 @@ import (
 )
 
 const (
-	PORT int q= 8000
+	PORT int = 8000
 )
 
 func main() {

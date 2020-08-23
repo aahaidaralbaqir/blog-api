@@ -20,18 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd477443-8ba2-41f8-82af-85ea8bc87588" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/entities/post_author.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/delivery/http/author_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/repositories/author_repo.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/author_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/application.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/application.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/delivery/http/post_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/delivery/http/post_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/post.go" beforeDir="false" afterPath="$PROJECT_DIR$/entities/post.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entities/post_author.go" beforeDir="false" afterPath="$PROJECT_DIR$/entities/post_author.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repositories/post_repo.go" beforeDir="false" afterPath="$PROJECT_DIR$/repositories/post_repo.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/route.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/routes.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post_service.gp.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/post_service.gp.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage.db" beforeDir="false" afterPath="$PROJECT_DIR$/utils/lib/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/services/post_service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +91,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -100,10 +101,10 @@
       <screen x="40" y="23" width="1400" height="877" />
     </state>
     <state x="489" y="270" key="#com.intellij.fileTypes.FileTypeChooser/40.23.1400.877@40.23.1400.877" timestamp="1598007512315" />
-    <state x="553" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1598024440967">
+    <state x="553" y="184" key="#com.intellij.ide.util.MemberChooser" timestamp="1598174641457">
       <screen x="40" y="23" width="1400" height="877" />
     </state>
-    <state x="553" y="184" key="#com.intellij.ide.util.MemberChooser/40.23.1400.877@40.23.1400.877" timestamp="1598024440967" />
+    <state x="553" y="184" key="#com.intellij.ide.util.MemberChooser/40.23.1400.877@40.23.1400.877" timestamp="1598174641457" />
     <state width="320" height="445" key="SwitcherDM" timestamp="1598007267655">
       <screen x="40" y="23" width="1400" height="877" />
     </state>

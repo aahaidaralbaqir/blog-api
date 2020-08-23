@@ -8,7 +8,7 @@ import (
 )
 
 type PostHandler struct {
-	PostService services.PostService
+	PostService *services.PostService
 }
 
 func (p *PostHandler) FetchPost(c *fiber.Ctx) {
@@ -42,8 +42,8 @@ func NewPostHandler(r *fiber.App) {
 		PostService: services.NewPostService(),
 	}
 
-	r.Get("/posts", handler.FetchPost)
-	r.Get("/posts-author", handler.FetchPostWithAuthor)
+	//r.Get("/posts", handler.FetchPost)
+	r.Get("/posts", handler.FetchPostWithAuthor)
 	r.Post("/post",handler.NewPost)
 
 }

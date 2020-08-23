@@ -1,15 +1,14 @@
 package database
 
 import (
+	"database/sql"
 	"fmt"
-	"go-crash-course/entities"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
 )
 
-var conn *gorm.DB
+var conn *sql.DB
 var err error
 
 func Connection() {
@@ -21,7 +20,7 @@ func Connection() {
 		viper.GetString("database.dbname"),
 	)
 
-	conn, err = gorm.Open("mysql", databaseURI)
+	conn, err = sql.Open("mysql", databaseURI)
 	fmt.Println(databaseURI)
 	if err != nil {
 		fmt.Println("DATABASE => `Error When Connecting to database`", err.Error())
@@ -36,11 +35,10 @@ func CreateConnection() {
 	Connection()
 }
 
-func GetConnection() *gorm.DB {
+func GetConnection() *sql.DB {
 	return conn
 }
 
 func CreateMigration() {
-	conn.AutoMigrate(&entities.Post{}, &entities.Author{})
 	fmt.Println("MIGRATION => `migration successfully`")
 }

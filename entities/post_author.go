@@ -3,5 +3,5 @@ package entities
 
 type PostAuthor struct {
 	Post
-	Author
+	Author *Author `json:"author"`
 }

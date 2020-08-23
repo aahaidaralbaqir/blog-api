@@ -6,26 +6,31 @@ import (
 )
 
 type PostService struct {
-	Repository repositories.IPostRepository
+	PostRepository repositories.IPostRepository
+	AuthorRepository repositories.IAuthorRepository
 }
 
 func (u *PostService) GetPost() []*entities.Post {
-	posts, _ := u.Repository.FindAll()
+	posts, _ := u.PostRepository.FindAll()
 	return posts
 }
 
 func (u *PostService) GetPostWithAuthor() []*entities.PostAuthor {
-	postsWihAuthor, _ := u.Repository.WithAuthor()
-	return postsWihAuthor
+	posts, _ := u.PostRepository.WithAuthor()
+	for _,post := range posts {
+		post.Author = u.AuthorRepository.FindById(post.AuthorId)
+	}
+	return posts
 }
 
 func (u *PostService) SavePost(data *entities.Post) (post *entities.Post, err error) {
-	result, err := u.Repository.Save(data)
+	result, err := u.PostRepository.Save(data)
 	return result, nil
 }
 
-func NewPostService() PostService {
-	return PostService{
-		Repository: repositories.NewPostRepository(),
+func NewPostService() *PostService {
+	return &PostService{
+		PostRepository: repositories.NewPostRepository(),
+		AuthorRepository: repositories.NewAuthorRepository(),
 	}
 }

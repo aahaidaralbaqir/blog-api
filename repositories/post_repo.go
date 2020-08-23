@@ -1,7 +1,8 @@
 package repositories
 
 import (
-	"github.com/jinzhu/gorm"
+	"database/sql"
+	"fmt"
 	"go-crash-course/database"
 	"go-crash-course/entities"
 )
@@ -9,28 +10,39 @@ import (
 type IPostRepository interface {
 	Save(*entities.Post) (*entities.Post, error)
 	FindAll() ([]*entities.Post, error)
-	WithAuthor() ([]*entities.PostAuthor,error)
+	WithAuthor() ([]*entities.PostAuthor, error)
 }
 
 type PostRepository struct {
-	Conn *gorm.DB
+	Conn *sql.DB
 }
 
 func (p *PostRepository) Save(post *entities.Post) (*entities.Post, error) {
-	p.Conn.Table("posts").Create(&post)
-	return post, nil
+	return nil, nil
 }
 
 func (p *PostRepository) WithAuthor() ([]*entities.PostAuthor, error) {
 	var PostAuthor []*entities.PostAuthor
-	p.Conn.Raw("SELECT * FROM posts INNER JOIN authors ON posts.author_id = authors.id").Scan(&PostAuthor)
+	rows,err := p.Conn.Query("SELECT * FROM posts")
+	if err != nil {
+		fmt.Println("WITH AUTHOR", err.Error())
+	}
+
+	for rows.Next() {
+		var each = &entities.PostAuthor{}
+		var err = rows.Scan(&each.ID,&each.Description,&each.Title,&each.AuthorId)
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
+		PostAuthor = append(PostAuthor,each)
+	}
 	return PostAuthor, nil
 }
 
 func (p *PostRepository) FindAll() ([]*entities.Post, error) {
-	var Post []*entities.Post
-	p.Conn.Raw("SELECT * FROM posts").Scan(&Post)
-	return Post, nil
+
+	return nil, nil
 }
 
 func NewPostRepository() IPostRepository {

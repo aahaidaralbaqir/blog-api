@@ -35,6 +35,7 @@ func (a *Application) ConfigureMigration() {
 
 func (a *Application) ConfigureRoutes(app *fiber.App) {
 	http.NewPostHandler(app)
+	http.NewAuthorHandler(app)
 }
 
 func (a *Application) Start(port int) {
