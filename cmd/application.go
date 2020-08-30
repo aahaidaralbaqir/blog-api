@@ -2,12 +2,13 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/gofiber/fiber"
-	_ "github.com/gofiber/fiber/middleware"
-	"github.com/spf13/viper"
 	"go-crash-course/database"
 	"go-crash-course/delivery/http"
 	"go-crash-course/delivery/middleware"
+
+	"github.com/gofiber/fiber"
+	_ "github.com/gofiber/fiber/middleware"
+	"github.com/spf13/viper"
 )
 
 type Application struct{}
@@ -34,13 +35,14 @@ func (a *Application) ConfigureMigration() {
 	database.CreateMigration()
 }
 
-func (a *Application) ConfigureMiddleware(app *fiber.App){
+func (a *Application) ConfigureMiddleware(app *fiber.App) {
 	middleware.SetupCors(app)
 }
 
 func (a *Application) ConfigureRoutes(app *fiber.App) {
 	http.NewPostHandler(app)
 	http.NewAuthorHandler(app)
+	http.NewTagHandler(app)
 }
 
 func (a *Application) Start(port int) {

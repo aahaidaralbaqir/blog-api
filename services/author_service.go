@@ -47,4 +47,3 @@ func NewAuthorService() *AuthorService {
 		AuthorRepository: repositories.NewAuthorRepository(),
 	}
 }
-
