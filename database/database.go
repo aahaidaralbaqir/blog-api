@@ -21,7 +21,6 @@ func Connection() {
 	)
 
 	conn, err = sql.Open("mysql", databaseURI)
-	fmt.Println(databaseURI)
 	if err != nil {
 		fmt.Println("DATABASE => `Error When Connecting to database`", err.Error())
 	}

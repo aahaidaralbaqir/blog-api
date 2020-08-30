@@ -23,8 +23,30 @@ func (u *PostService) GetPostWithAuthor() []*entities.PostAuthor {
 	return posts
 }
 
-func (u *PostService) SavePost(data *entities.Post) (post *entities.Post, err error) {
-	result, err := u.PostRepository.Save(data)
+func (u *PostService) SavePost(data *entities.Post) (post *entities.Post) {
+	result := u.PostRepository.Save(data)
+	return result
+}
+
+func (u *PostService) FindById(id int) (*entities.Post) {
+	result,_ := u.PostRepository.FindById(id)
+	return result
+}
+
+func (u *PostService) Destroy(id int) error {
+	err := u.PostRepository.Destroy(id)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *PostService) Update(post *entities.Post) (*entities.Post,error){
+	result,err := u.PostRepository.Update(post)
+	if err != nil {
+		return nil,err
+	}
 	return result, nil
 }
 
