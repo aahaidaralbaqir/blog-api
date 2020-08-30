@@ -10,5 +10,6 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/klauspost/compress v1.10.11 // indirect
 	github.com/spf13/viper v1.7.1
+	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a
 	golang.org/x/sys v0.0.0-20200828194041-157a740278f4 // indirect
 )

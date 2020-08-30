@@ -3,6 +3,7 @@ package services
 import (
 	"go-crash-course/entities"
 	"go-crash-course/repositories"
+	"go-crash-course/utils/lib"
 )
 
 type AuthorService struct {
@@ -15,6 +16,7 @@ func (a *AuthorService)  FetchAuthor() []*entities.Author {
 }
 
 func (a *AuthorService) SaveAuthor(data *entities.Author) *entities.Author {
+	data.Password = lib.Hash(data.Password)
 	result := a.AuthorRepository.Store(data)
 	return result
 }

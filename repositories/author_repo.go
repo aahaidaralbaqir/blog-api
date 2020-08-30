@@ -33,7 +33,7 @@ func (a *AuthorRepository) FindById(id int) *entities.Author {
 }
 
 func (a *AuthorRepository) Store(author *entities.Author) *entities.Author {
-	_,err := a.Conn.Exec("INSERT INTO authors values(?,?)",nil,author.Name)
+	_,err := a.Conn.Exec("INSERT INTO authors values(?,?,?,?,?,?)",nil,author.Name,author.Username,author.Password,author.Bio,author.Skills)
 	if err != nil {
 		return nil
 	}
@@ -51,7 +51,7 @@ func (a *AuthorRepository) FindAll() []*entities.Author {
 
 	for rows.Next() {
 		var each = &entities.Author{}
-		err := rows.Scan(&each.ID, &each.Name)
+		err := rows.Scan(&each.ID, &each.Name,&each.Username,&each.Password,&each.Bio,&each.Skills)
 
 		if err != nil {
 			fmt.Println("ERROR", err.Error())

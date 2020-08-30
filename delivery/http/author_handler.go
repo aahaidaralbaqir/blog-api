@@ -24,7 +24,6 @@ func (p *AuthorHandler) NewAuthor(c *fiber.Ctx) {
 	body := c.Body()
 	var author *entities.Author
 	var _ = json.Unmarshal([]byte(body), &author)
-
 	result := p.AuthorService.SaveAuthor(author)
 
 	response.ResponseOK("CREATE_AUTHOR_SUCCESS",result,c)
